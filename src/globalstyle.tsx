@@ -16,8 +16,8 @@ font-size: 25px;
 
 export const HeaderContainer = styled.header`
   padding: 15px;
-  background-color: #333;
   color: #fff;
+  border-bottom: 1px solid #000;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -25,6 +25,11 @@ export const HeaderContainer = styled.header`
 
 export const LogOffButton = styled(CiLogout)`
   cursor: pointer;
+  color: #000;
+`;
+
+export const Title = styled.h1`
+  color: #000;
 `;
 
 export const WrapperHeaderContent = styled.div`

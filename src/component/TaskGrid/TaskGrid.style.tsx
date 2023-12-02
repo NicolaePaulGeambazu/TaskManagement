@@ -15,7 +15,7 @@ export const GridContainer = styled.div`
 `;
 
 export const GridColumn = styled.div`
-  background-color: #f0f0f0;
+  background-color: #f9f6f6;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);

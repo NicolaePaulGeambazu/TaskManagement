@@ -8,7 +8,7 @@ interface LayoutProps {
 const Layout = ({ children } : LayoutProps) => {
   return (
     <div>
-      <Header title="Task management" />
+      <Header title="Tasks management" />
       <main>{children}</main>
     </div>
   );

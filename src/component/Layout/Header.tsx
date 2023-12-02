@@ -1,4 +1,4 @@
-import { HeaderContainer, LogOffButton } from '../../globalstyle';
+import { HeaderContainer, LogOffButton, Title } from '../../globalstyle';
 interface HeaderProps {
   title: string;
 }
@@ -10,7 +10,7 @@ const clearDataSession = () => {
 const Header = ({ title } : HeaderProps) => {
   return (
     <HeaderContainer>
-            <h1>{title}</h1>
+            <Title>{title}</Title>
             <LogOffButton onClick={() => clearDataSession()}/>
     </HeaderContainer>
   );
