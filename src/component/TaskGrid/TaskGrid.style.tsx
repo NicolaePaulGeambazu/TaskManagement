@@ -7,6 +7,11 @@ export const GridContainer = styled.div`
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+   display: flex;
+   flex-direction: column;
+  }
 `;
 
 export const GridColumn = styled.div`

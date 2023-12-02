@@ -19,7 +19,7 @@ export const ModalContent = styled.div`
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   max-width: 400px;
-  width: 100%;
+  width: 80%;
 `;
 
 export const AddTicketButton = styled.button`
