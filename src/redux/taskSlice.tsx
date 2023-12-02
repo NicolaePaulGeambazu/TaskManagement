@@ -39,7 +39,7 @@ const tasksSlice = createSlice({
       const index = state.tasks.findIndex((task) => task.id === id);
 
       if (index !== -1) {
-        state.tasks[index] = { ...state.tasks[index], status: 'Done' };
+        state.tasks[index] = { ...state.tasks[index], status: 'Completed' };
       }
       localStorage.setItem('tasks', JSON.stringify(state));
     },

@@ -52,7 +52,7 @@ const TaskGrid = () => {
         <TaskColumn title="Ready to dev" tasks={tasks} status="Ready to dev" onEditTask={handleEditTask} onDeleteTask={handleDeleteTask} onCompletionTask={handleOnCompletionTask}/>
         <TaskColumn title="In Progress" tasks={tasks} status="In progress" onEditTask={handleEditTask} onDeleteTask={handleDeleteTask} onCompletionTask={handleOnCompletionTask}/>
         <TaskColumn title="In Review" tasks={tasks} status="In review" onEditTask={handleEditTask} onDeleteTask={handleDeleteTask} onCompletionTask={handleOnCompletionTask}/>
-        <TaskColumn title="Done" tasks={tasks} status="Done" onEditTask={handleEditTask} onDeleteTask={handleDeleteTask} />
+        <TaskColumn title="Completed" tasks={tasks} status="Completed" onEditTask={handleEditTask} onDeleteTask={handleDeleteTask} />
       </GridContainer>
       <TaskModal
         isOpen={isModalOpen}

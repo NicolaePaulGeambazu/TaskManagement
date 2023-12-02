@@ -99,7 +99,7 @@ const TaskModal = ({ isOpen, onRequestClose, onAddTask, onEditTask, taskToEdit }
             </WrapperInline>
             <DataEntry label="Title" value={title} onChange={setTitle} placeholder="Enter title" error={errors.title} />
             <DataEntry label="Description" value={description} onChange={setDescription} placeholder="Enter description" error={errors.description} />
-            <Dropdown label="Status" value={status} onChange={setStatus} options={['None', 'Backlog', 'Ready to dev', 'In progress', 'In review', 'Done']} error={errors.status} />
+            <Dropdown label="Status" value={status} onChange={setStatus} options={['None', 'Backlog', 'Ready to dev', 'In progress', 'In review', 'Completed']} error={errors.status} />
             <AddTicketButton onClick={taskToEdit ? handleEditTask : handleAddTask}>
               {taskToEdit ? 'Edit Task' : 'Add Task'}
             </AddTicketButton>
