@@ -9,7 +9,6 @@ interface DataEntryProps {
 }
 
 const DataEntry = ({ label, value, onChange, placeholder, error } : DataEntryProps) => {
-  console.log(error);
   return (
     <>
       <FormLabel>{label}:</FormLabel>

@@ -1,6 +1,5 @@
-// DashBoard.tsx
 import { Wrapper } from '../globalstyle';
-import TaskGrid from './TaskGrid/TaskGrid'; // Make sure to import TaskColumn
+import TaskGrid from './TaskGrid/TaskGrid';
 
 const DashBoard = () => {
   return (

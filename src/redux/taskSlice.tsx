@@ -1,4 +1,3 @@
-// src/redux/taskSlice.tsx
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './index';
 import { Task } from '../types';
@@ -35,7 +34,7 @@ const tasksSlice = createSlice({
       localStorage.setItem('tasks', JSON.stringify(state));
     },
     completeTask: (state, action: PayloadAction<Task>) => {
-      const { id, status } = action.payload;
+      const { id } = action.payload;
       const index = state.tasks.findIndex((task) => task.id === id);
 
       if (index !== -1) {

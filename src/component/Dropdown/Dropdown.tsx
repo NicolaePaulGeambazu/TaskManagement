@@ -1,4 +1,3 @@
-import React from 'react';
 import { ErrorText, FormLabel, FormSelect } from '../Modal/TaskModal.style';
 
 interface DropdownProps {

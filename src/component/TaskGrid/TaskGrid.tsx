@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddTaskButton, GridContainer, Ticket } from './TaskGrid.style';
+import { AddTaskButton, GridContainer } from './TaskGrid.style';
 import { Task } from '../../types';
 import { addTask, completeTask, deleteTask, editTask, selectTasks } from '../../redux/taskSlice';
 import TaskColumn from './TaskColumn';

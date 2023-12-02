@@ -37,7 +37,6 @@ const TaskModal = ({ isOpen, onRequestClose, onAddTask, onEditTask, taskToEdit }
 
   const validateForm = () => {
     const validationErrors: { [key: string]: string } = {};
-    console.log(status);
     if (!title.trim()) {
       validationErrors.title = 'Title cannot be empty';
     }
