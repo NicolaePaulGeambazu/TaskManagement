@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Closebutton } from '../../globalstyle';
 import { Task } from '../../types';
-import { AddTicketButton, FormInput, FormLabel, FormSelect, FormTextarea, ModalContent, ModalOverlay, WrapperInline } from './TaskModal.style';
+import { AddTicketButton, ModalContent, ModalOverlay, WrapperInline } from './TaskModal.style';
+import DataEntry from '../DataEntry/DataEntry';
+import Dropdown from '../Dropdown/Dropdown';
 
 interface TaskModalProps {
   isOpen: boolean;
@@ -15,6 +17,7 @@ const TaskModal = ({ isOpen, onRequestClose, onAddTask, onEditTask, taskToEdit }
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('None');
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     if (isOpen) {
@@ -27,27 +30,54 @@ const TaskModal = ({ isOpen, onRequestClose, onAddTask, onEditTask, taskToEdit }
         setDescription('');
         setStatus('None');
       }
+      // Clear errors when opening the modal
+      setErrors({});
     }
   }, [isOpen, taskToEdit]);
 
-  const handleAddTask = () => {
-    const newTask = { title, description, status };
-
-    if (!title || !description || status === 'None') {
-      return;
+  const validateForm = () => {
+    const validationErrors: { [key: string]: string } = {};
+    console.log(status);
+    if (!title.trim()) {
+      validationErrors.title = 'Title cannot be empty';
     }
 
-    onAddTask(newTask);
-    resetState();
-    onRequestClose();
+    if (!description.trim()) {
+      validationErrors.description = 'Description cannot be empty';
+    }
+
+    if (status === 'None' || status === undefined) {
+      validationErrors.status = 'Please select a status';
+    }
+
+    return Object.keys(validationErrors).length === 0 ? null : validationErrors;
+  };
+
+  const handleAddTask = () => {
+    const validationErrors = validateForm();
+    if (!validationErrors) {
+      const newTask = { title, description, status };
+      onAddTask(newTask);
+      resetState();
+      onRequestClose();
+    } else {
+      // Set validation errors in state
+      setErrors(validationErrors);
+    }
   };
 
   const handleEditTask = () => {
-    const ed = { id: taskToEdit?.id, title, description, status };
-    if (taskToEdit) {
-      onEditTask(Object.assign({}, taskToEdit, ed));
-      resetState();
-      onRequestClose();
+    const validationErrors = validateForm();
+    if (!validationErrors) {
+      const ed = { id: taskToEdit?.id, title, description, status };
+      if (taskToEdit) {
+        onEditTask(Object.assign({}, taskToEdit, ed));
+        resetState();
+        onRequestClose();
+      }
+    } else {
+      // Set validation errors in state
+      setErrors(validationErrors);
     }
   };
 
@@ -55,37 +85,28 @@ const TaskModal = ({ isOpen, onRequestClose, onAddTask, onEditTask, taskToEdit }
     setTitle('');
     setDescription('');
     setStatus('None');
+    setErrors({});
   };
 
   return (
     <>
-    {isOpen && (
-      <ModalOverlay>
-        <ModalContent>
-          <WrapperInline>
-            <h2>{taskToEdit ? 'Edit Task' : 'Add Task'}</h2>
-            <Closebutton onClick={onRequestClose} />
-          </WrapperInline>
-          <FormLabel>Title:</FormLabel>
-          <FormInput type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Enter title" />
-          <FormLabel>Description:</FormLabel>
-          <FormTextarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Enter description" />
-          <FormLabel>Status:</FormLabel>
-          <FormSelect value={status} onChange={(e) => setStatus(e.target.value)}>
-            <option value="None">None</option>
-            <option value="Backlog">Backlog</option>
-            <option value="Ready to dev">Ready to dev</option>
-            <option value="In progress">In progress</option>
-            <option value="In review">In review</option>
-            <option value="Done">Done</option>
-          </FormSelect>
-          <AddTicketButton onClick={taskToEdit ? handleEditTask : handleAddTask}>
-            {taskToEdit ? 'Edit Task' : 'Add Task'}
-          </AddTicketButton>
-        </ModalContent>
-      </ModalOverlay>
-    )}
-  </>
+      {isOpen && (
+        <ModalOverlay>
+          <ModalContent>
+            <WrapperInline>
+              <h2>{taskToEdit ? 'Edit Task' : 'Add Task'}</h2>
+              <Closebutton onClick={onRequestClose} />
+            </WrapperInline>
+            <DataEntry label="Title" value={title} onChange={setTitle} placeholder="Enter title" error={errors.title} />
+            <DataEntry label="Description" value={description} onChange={setDescription} placeholder="Enter description" error={errors.description} />
+            <Dropdown label="Status" value={status} onChange={setStatus} options={['None', 'Backlog', 'Ready to dev', 'In progress', 'In review', 'Done']} error={errors.status} />
+            <AddTicketButton onClick={taskToEdit ? handleEditTask : handleAddTask}>
+              {taskToEdit ? 'Edit Task' : 'Add Task'}
+            </AddTicketButton>
+          </ModalContent>
+        </ModalOverlay>
+      )}
+    </>
   );
 };
 

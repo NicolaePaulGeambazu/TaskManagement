@@ -39,10 +39,15 @@ export const FormLabel = styled.label`
   margin-bottom: 8px;
 `;
 
+export const ErrorText = styled.div`
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+`;
+
 export const FormInput = styled.input`
   width: 100%;
   padding: 10px;
-  margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -62,7 +67,6 @@ export const FormTextarea = styled.textarea`
 export const FormSelect = styled.select`
   width: 100%;
   padding: 10px;
-  margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
