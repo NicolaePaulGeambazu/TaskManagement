@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddTaskButton, GridContainer, Ticket } from './TaskGrid.style';
 import { Task } from '../../types';
-import { addTask, deleteTask, editTask, selectTasks } from '../../redux/taskSlice';
+import { addTask, completeTask, deleteTask, editTask, selectTasks } from '../../redux/taskSlice';
 import TaskColumn from './TaskColumn';
 import TaskModal from '../Modal/TaskModal';
 
@@ -35,13 +35,15 @@ const TaskGrid = () => {
   };
 
   const handleOnCompletionTask = (task: Task) => {
-
+    const updatedTask = { ...task, status: 'Done' };
+    dispatch(completeTask(updatedTask));
+    setTaskToEdit(updatedTask);
   };
 
   const handleDeleteTask = (taskId: number) => {
     dispatch(deleteTask(taskId));
   };
-
+  
   return (
     <div>
       <AddTaskButton onClick={openModal}>Add Task</AddTaskButton>

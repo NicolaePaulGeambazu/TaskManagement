@@ -1,7 +1,6 @@
 import { DeleteButton, Description, EditButton, GridColumn, MarkCompleted, Ticket, WrapperButton } from './TaskGrid.style';
 import { Task } from '../../types';
 import { WrapperInline } from '../Modal/TaskModal.style';
-
 interface TaskColumnProps {
   title: string;
   tasks: Task[];
@@ -11,7 +10,7 @@ interface TaskColumnProps {
   onCompletionTask?: (task: Task) => void;
 }
 
-const TaskColumn = ({ title, tasks, status, onEditTask, onDeleteTask } : TaskColumnProps) => {
+const TaskColumn = ({ title, tasks, status, onEditTask, onDeleteTask, onCompletionTask } : TaskColumnProps) => {
   return (
     <GridColumn>
       <h2>{title}</h2>
@@ -21,7 +20,7 @@ const TaskColumn = ({ title, tasks, status, onEditTask, onDeleteTask } : TaskCol
           <Ticket key={task.id}>
             <WrapperInline>
               <h3>{task.title}</h3>
-              <MarkCompleted />
+              {onCompletionTask && <MarkCompleted onClick={() => onCompletionTask(task)} />}
             </WrapperInline>
             <Description>{task.description}</Description>
             <p>Status: {task.status}</p>
