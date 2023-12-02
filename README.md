@@ -1,5 +1,6 @@
 ## Project
 This project will be an task management applciation what will give user a easy management of task and will make it clear to see in wich status will be each task
+Project URL: https://task-management-rho-one.vercel.app/
 
 ## Available Scripts
 
